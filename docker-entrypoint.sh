@@ -25,9 +25,4 @@ fi
 export HOSTNAME="ip-$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4 | tr '.' '-')"
 hostname ${HOSTNAME}
 
-gosu rabbit exec "$@" &
-
-while true
-do
-  tail -f /dev/null & wait ${!}
-done
+su-exec rabbit "$@"
