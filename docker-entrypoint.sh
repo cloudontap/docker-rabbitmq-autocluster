@@ -2,6 +2,7 @@
 
 set -e
 
+# TODO: Add clean shutdown of the rabbit server
 term_handler() {
   exit 0;
 }

@@ -1,5 +1,8 @@
 FROM gavinmroy/alpine-rabbitmq-autocluster:3.6.2-0.6.0
 
+# So we can tweak things and adjust the hostname - we use gosu to run as rabbit user created in base docker image
+USER 0
+
 ENV GOSU_VERSION 1.7
 RUN set -x \
     && apk add --no-cache --virtual .gosu-deps \
@@ -17,8 +20,5 @@ RUN set -x \
     && apk del .gosu-deps
     
 COPY docker-entrypoint.sh /
-
-# So we can adjust the hostname - we use gosu to run as rabbit user created in base docker image
-USER 0
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
