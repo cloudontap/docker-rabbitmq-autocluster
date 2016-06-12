@@ -1,9 +1,10 @@
 FROM gavinmroy/alpine-rabbitmq-autocluster:3.6.2-0.6.0
 
-# So we can tweak things and adjust the hostname - we use gosu to run as rabbit user created in base docker image
+# So we can tweak things and adjust the hostname - we use gosu in entrypoint
+# script to run as rabbit user created in base docker image
 USER 0
 
-ENV GOSU_VERSION 1.7
+ENV GOSU_VERSION 1.9
 RUN set -x \
     && apk add --no-cache --virtual .gosu-deps \
         dpkg \
