@@ -24,6 +24,6 @@ fi
 
 # Ensure our rabbit hostname matches the private dns entry for the docker host
 # so the list of hosts returned by querying the ASG will match the node names of the rabbit containers
-export RABBITMQ_NODENAME="rabbit@ip-$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4 | tr '.' '-')"
+export HOSTNAME="ip-$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4 | tr '.' '-')"
 
 exec "$@"
