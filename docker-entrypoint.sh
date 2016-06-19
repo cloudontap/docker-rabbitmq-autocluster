@@ -13,9 +13,9 @@ trap 'term_handler' SIGTERM SIGKILL
 # Specific value can be passed in via ERLANG_COOKIE variable assuming
 # cookie file doesn't already exist
 COOKIE_FILE="${HOME}/.erlang.cookie"
-if [[ ! -f ${COOKIE_FILE} ]]; then
+if [[ ! -f "${COOKIE_FILE}" ]]; then
     if [[ "${ERLANG_COOKIE}" != "" ]]; then
-        echo -n "${ERLANG_COOKIE" > ${COOKIE_FILE}
+        echo -n "${ERLANG_COOKIE}" > ${COOKIE_FILE}
     else
         echo -n OYEINYOQTKHEALXSENUK > ${COOKIE_FILE}
     fi
