@@ -19,6 +19,7 @@ if [[ ! -f "${COOKIE_FILE}" ]]; then
     else
         echo -n OYEINYOQTKHEALXSENUK > ${COOKIE_FILE}
     fi
+    chmod 0600 ${COOKIE_FILE}
 fi
 
 # Ensure our rabbit hostname matches the private dns entry for the docker host
