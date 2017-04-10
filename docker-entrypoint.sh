@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -e
+# Support debugging the container
+if [[ -n "${DOCKER_DEBUG}" ]]; then set ${DOCKER_DEBUG}; fi
 
 # TODO: Add clean shutdown of the rabbit server
 term_handler() {
@@ -26,4 +27,16 @@ fi
 # so the list of hosts returned by querying the ASG will match the node names of the rabbit containers
 export HOSTNAME="ip-$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4 | tr '.' '-')"
 
-exec "$@"
+if [[ -n "${DOCKER_DEBUG}" ]]; then
+    # Loop until killed
+    /usr/lib/rabbitmq/sbin/rabbitmq-server
+    while true; do
+        sleep 5
+    done
+else
+    # Replace the startup script with the required command so it with receive signals as pid 1
+    exec "$@"
+fi
+
+# All good
+RESULT=0
