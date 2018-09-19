@@ -11,6 +11,7 @@ RUN apk update && \
 USER rabbitmq
 
 COPY docker-entrypoint.sh /
+COPY rabbitmq.config /usr/lib/rabbitmq/etc/rabbitmq/rabbitmq.config
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/usr/lib/rabbitmq/sbin/rabbitmq-server"]
